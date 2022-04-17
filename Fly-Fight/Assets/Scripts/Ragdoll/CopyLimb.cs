@@ -33,6 +33,12 @@ public class CopyLimb : MonoBehaviour
         }
     }
 
+    public void DeleteJoints()
+    {
+        for (int i = 0; i < _configurableJoints.Count; i++)
+            Destroy(_configurableJoints[i]);
+    }
+
     private void FixedUpdate()
     {
         if (IsPlayerActive)

@@ -6,6 +6,9 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     public int Money = 0;
+    [HideInInspector]public int Shots = 0;
+    [HideInInspector]public int Killed = 0;
+    public int CountOfEnemys;
 
     [SerializeField] private GameObject winUI;
     [SerializeField] private GameObject loseUI;
@@ -38,6 +41,16 @@ public class UIController : MonoBehaviour
         LevelController.Instance.LevelIndexReload(levelIndexText);
         MoneyUpdate();
         yield break;
+    }
+
+    public void CheckWin()
+    {
+        if (Killed == CountOfEnemys)
+        {
+            TapTicController.Instance.Success();
+            LevelEnd(true);
+            GradeChangeCor(Shots);
+        }
     }
 
     public void StopTutorial()

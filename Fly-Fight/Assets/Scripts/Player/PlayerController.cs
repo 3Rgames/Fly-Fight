@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private CopyLimb _playerCopyLimb;
+    [SerializeField] private PlayerTrigger _playerTrigger;
+    [SerializeField] private CopyLimb _copyLimb;
     [SerializeField] private GameObject _fakeSword;
     [SerializeField] private MeshRenderer _realSword;
+    [SerializeField] private ParticleSystem _death;
 
     [SerializeField] private Animator _playerAnimator;
 
@@ -23,9 +25,14 @@ public class PlayerController : MonoBehaviour
         _SM.Initialize(_noneState);
     }
 
+    private void OnEnable()
+    {
+        _playerTrigger.OnDeath += Death;
+    }
+
     public void Active()//sword
     {
-        _playerCopyLimb.IsPlayerActive = true;
+        _copyLimb.IsPlayerActive = true;
 
         _realSword.enabled = true;
         _fakeSword.SetActive(false);
@@ -37,10 +44,27 @@ public class PlayerController : MonoBehaviour
     {
         _SM.ChangeState(_standUpState);
 
-        _playerCopyLimb.IsPlayerActive = false;
+        _copyLimb.IsPlayerActive = false;
 
         _realSword.enabled = false;
         _fakeSword.SetActive(true);
+    }
+
+    private void Death()
+    {
+        _copyLimb.IsPlayerActive = true;
+        _realSword.enabled = false;
+        _fakeSword.SetActive(true);
+        _playerTrigger.HealthBarInActive();
+        _copyLimb.DeleteJoints();
+        TapTicController.Instance.Failure();
+        _death.Play();
+        UIController.Instance.LevelEnd(false);
+    }
+
+    private void OnDisable()
+    {
+        _playerTrigger.OnDeath -= Death;
     }
 
 }

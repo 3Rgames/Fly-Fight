@@ -24,7 +24,7 @@ public class DynamicJoystick : Joystick
     {
         OnPointD?.Invoke();
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
-        background.gameObject.SetActive(true);
+        background.gameObject.SetActive(false);
         base.OnPointerDown(eventData);
     }
 

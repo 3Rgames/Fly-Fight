@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public bool IsLife = true;
+    private bool _isLife = true;
+    [SerializeField] private EnemyTrigger _enemyTrigger;
+    [SerializeField] private CopyLimb _copyLimb;
+    [SerializeField] private ParticleSystem _death;
 
     private StateMachine _SM;
     private IdleState _idleState;
@@ -34,11 +37,16 @@ public class EnemyController : MonoBehaviour
         TakeAnimation();
     }
 
+    private void OnEnable()
+    {
+        _enemyTrigger.OnDeath += Death;
+    }
+
     public void TakeAnimation()
     {
         IEnumerator AnimationCor()
         {
-            while (IsLife)
+            while (_isLife)
             {
                 int animNumber = Random.Range(1, 8);
                 switch (animNumber)
@@ -59,5 +67,22 @@ public class EnemyController : MonoBehaviour
         }
         
         StartCoroutine(AnimationCor());
+    }
+
+    private void Death()
+    {
+        _isLife = false;
+        _copyLimb.IsPlayerActive = true;
+        _enemyTrigger.HealthBarInActive();
+        _copyLimb.DeleteJoints();
+        _death.Play();
+        UIController.Instance.Shots += 3;
+        UIController.Instance.Killed++;
+        UIController.Instance.CheckWin();
+    }
+
+    private void OnDisable()
+    {
+        _enemyTrigger.OnDeath -= Death;
     }
 }
