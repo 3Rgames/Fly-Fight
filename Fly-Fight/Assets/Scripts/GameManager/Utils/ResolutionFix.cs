@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Cinemachine;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(ResolutionFix))]
@@ -26,7 +27,8 @@ public class ResolutionFix : MonoBehaviour
 
     [SerializeField] private float _defaultfocalL1 = 35f;      //IphoneLarge (1242x2688) perfect FOV
     [SerializeField] private float _defaultfocalL2 = 50f;      //Ipad (2048x2732) perfect FOV
-    [SerializeField] private Camera _camera;
+    //[SerializeField] private Camera _camera;
+    [SerializeField] private CinemachineVirtualCamera vcam;
 
     private void Start()
     {
@@ -38,7 +40,7 @@ public class ResolutionFix : MonoBehaviour
         var currRatio = (float)Screen.height / (float)Screen.width;
         var t = (currRatio - _defaultRatio2) / (_defaultRatio1 - _defaultRatio2);
         // print("t: " + t + "; lerp: " + Mathf.LerpUnclamped(_defaultfocalL2, _defaultfocalL1, t));
-        _camera.fieldOfView = Mathf.LerpUnclamped(_defaultfocalL2, _defaultfocalL1, t);
+        vcam.m_Lens.FieldOfView = Mathf.LerpUnclamped(_defaultfocalL2, _defaultfocalL1, t);
     }
 }
 

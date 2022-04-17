@@ -7,6 +7,15 @@ public class SwordController : MonoBehaviour
     [SerializeField] private DynamicJoystick joy;
     [SerializeField] private Rigidbody _swordRB;
     [SerializeField] private float _speed = 2f;
+    [SerializeField] private PlayerController _playerController;
+
+    private float x = -90f, z = -180f;
+
+    private void OnEnable()
+    {
+        joy.OnPointU += NonActive;
+        joy.OnPointD += Active;
+    }
 
     private void FixedUpdate()
     {
@@ -14,12 +23,26 @@ public class SwordController : MonoBehaviour
 
         if (joy.Horizontal != 0 || joy.Vertical != 0)
         {
-            //transform.rotation = Quaternion.LookRotation(_swordRB.velocity);
-            
-            //transform.rotation =  Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_swordRB.velocity), Time.deltaTime);
-            //transform.rotation = Quaternion.Euler(-90f, Quaternion.LookRotation(_swordRB.velocity).y, -180f);
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation, Quaternion.Euler(x, Quaternion.LookRotation(_swordRB.velocity).eulerAngles.y, z),
+                Time.deltaTime * 5f);
         }
+    }
 
+    private void Active()
+    {
+        UIController.Instance.StopTutorial();
+        _playerController.Active();
+    }
 
+    private void NonActive()
+    {
+        _playerController.NonActive();
+    }
+
+    private void OnDisable()
+    {
+        joy.OnPointU += NonActive;
+        joy.OnPointD += Active;
     }
 }
