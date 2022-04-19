@@ -76,7 +76,6 @@ public class EnemyController : MonoBehaviour
         _enemyTrigger.HealthBarInActive();
         _copyLimb.DeleteJoints();
         _death.Play();
-        UIController.Instance.Shots += 3;
         UIController.Instance.Killed++;
         UIController.Instance.CheckWin();
     }

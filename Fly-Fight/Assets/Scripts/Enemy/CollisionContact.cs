@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class CollisionContact : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _colissionParticle;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == Tags.SWORD)
         {
-            Instantiate(_colissionParticle, collision.contacts[0].point, Quaternion.identity).Play();
+            ObjectPooler.Instance.SpawnFromPool(ObjectPooler.Instance.AllTags[0], collision.contacts[0].point, Quaternion.identity).GetComponent<ParticleSystem>().Play();
+        }
+        if(collision.collider.tag == Tags.HIT)
+        {
+            ObjectPooler.Instance.SpawnFromPool(ObjectPooler.Instance.AllTags[1], collision.contacts[0].point, Quaternion.identity).GetComponent<ParticleSystem>().Play();
         }
     }
 }

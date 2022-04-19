@@ -43,5 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c732fbbd75924858bcd24f0a66c8f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools: []
-  AllTags: []
+  pools:
+  - Tag: BloodRad
+    Prefab: {fileID: 167524, guid: fdac75e990da47649b31f10049c400b0, type: 3}
+    Size: 5
+  - Tag: BloodGreem
+    Prefab: {fileID: 167524, guid: 617ae84e57dac4f4991bfb30416ac1ed, type: 3}
+    Size: 3
+  AllTags:
+  - BloodRad
+  - BloodGreen

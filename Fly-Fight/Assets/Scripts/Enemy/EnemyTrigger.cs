@@ -20,15 +20,25 @@ public class EnemyTrigger : MonoBehaviour
     {
         if (other.tag == Tags.SWORD)
         {
-            TapTicController.Instance.Light();
-            _health -= 34f;
-            _healthBar.HealthBarUpdate(_health);
-            if (_health <= 0)
-            {
-                OnDeath?.Invoke();
-                Destroy(GetComponent<Rigidbody>());
-                Destroy(GetComponent<CapsuleCollider>());
-            }
+            UIController.Instance.Shots++;
+            TakeDamage(34f);
+        }
+        if (other.tag == Tags.SEA)
+        {
+            TakeDamage(100f);
+        }
+    }
+
+    private void TakeDamage(float damage)
+    {
+        TapTicController.Instance.Light();
+        _health -= damage;
+        _healthBar.HealthBarUpdate(_health);
+        if (_health <= 0)
+        {
+            OnDeath?.Invoke();
+            Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<CapsuleCollider>());
         }
     }
 
