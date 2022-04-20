@@ -6,13 +6,13 @@ public class SwordController : MonoBehaviour
 {
     [SerializeField] private DynamicJoystick joy;
     [SerializeField] private Rigidbody _swordRB;
-    //[SerializeField] private float _speed = 2f;
+    [SerializeField] private float _speed = 1f;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private List<Rigidbody> _bodyParts = new List<Rigidbody>();
     private Vector3 _forceDirection;
-    private Vector3 _torqueDirection;
-    float x, z;
+    private Vector3 _maxVelocity, _minVelocity;
 
-    //private float x = -90f, z = -180f;
+    private float x = -90f, z = -180f;
 
     private void OnEnable()
     {
@@ -22,7 +22,9 @@ public class SwordController : MonoBehaviour
 
     private void Start()
     {
-        /*IEnumerator NumbCor()
+        _maxVelocity = Vector3.one * 3f;
+        _minVelocity = Vector3.one * -3f;
+        IEnumerator NumbCor()
         {
             while (true)
             {
@@ -31,33 +33,44 @@ public class SwordController : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
         }
-        StartCoroutine(NumbCor());*/
+        StartCoroutine(NumbCor());
     }
 
     private void FixedUpdate()
     {
-        if (joy.Horizontal != 0 || joy.Vertical != 0)
-        {
-             x = joy.Horizontal; 
-             z = joy.Vertical; 
-            //float y = joy.Vertical;
-
-            _forceDirection = transform.right * x + transform.forward * z; 
-            //_torqueDirection = new Vector3(0, y, 0); 
-
-            _swordRB.AddForce(_forceDirection * Time.deltaTime, ForceMode.VelocityChange);
-            //transform.Rotate(_torqueDirection * 5f * Time.deltaTime);
-
-        }
-
-        /*_swordRB.velocity = new Vector3(joy.Horizontal * _speed, _swordRB.velocity.y, joy.Vertical * _speed);
+        transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, 1f, 1.8f), transform.localPosition.z);
+        _swordRB.velocity = Clamp(_swordRB.velocity, _minVelocity, _maxVelocity);
+        _swordRB.angularVelocity = Clamp(_swordRB.angularVelocity, _minVelocity, _maxVelocity);
 
         if (joy.Horizontal != 0 || joy.Vertical != 0)
         {
+            _forceDirection = new Vector3(joy.Horizontal, _swordRB.velocity.y, joy.Vertical);
+            _swordRB.AddForce(_forceDirection * _speed * Time.deltaTime, ForceMode.Force);
+
+            BodyFly();
+
             transform.rotation = Quaternion.Lerp(
                 transform.rotation, Quaternion.Euler(x, Quaternion.LookRotation(_swordRB.velocity).eulerAngles.y, z),
-                Time.deltaTime * 5f);
-        }*/
+                Time.deltaTime);
+        }
+
+        //_swordRB.velocity = new Vector3(joy.Horizontal * _speed, _swordRB.velocity.y, joy.Vertical * _speed);
+    }
+
+    private void BodyFly()
+    {
+        for(int i=0;i< _bodyParts.Count;i++)
+        {
+            _bodyParts[i].AddForce(Vector3.up * Vector3.Distance(transform.position, _bodyParts[i].position), ForceMode.Force);
+        }
+    }
+
+    private Vector3 Clamp(Vector3 value, Vector3 Min, Vector3 Max)
+    {
+        value.x = Mathf.Clamp(value.x, Min.x, Max.x);
+        value.y = Mathf.Clamp(value.y, Min.y, Max.y);
+        value.z = Mathf.Clamp(value.z, Min.z, Max.z);
+        return value;
     }
 
     private void Active()
@@ -68,6 +81,8 @@ public class SwordController : MonoBehaviour
 
     private void NonActive()
     {
+        _swordRB.velocity = Vector3.zero;
+        _swordRB.angularVelocity = Vector3.zero;
         _playerController.NonActive();
     }
 

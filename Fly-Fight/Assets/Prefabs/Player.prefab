@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 29064954195496493}
   - component: {fileID: 29064954195496492}
   - component: {fileID: 29064954195496483}
+  - component: {fileID: 460318764}
   m_Layer: 9
   m_Name: RightLeg
   m_TagString: Untagged
@@ -191,6 +192,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &460318764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29064954195496482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &128525269318426955
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +216,7 @@ GameObject:
   - component: {fileID: 128525269318426966}
   - component: {fileID: 128525269318426964}
   - component: {fileID: 128525269318426965}
+  - component: {fileID: 1194455262}
   m_Layer: 9
   m_Name: Spine1
   m_TagString: Untagged
@@ -350,6 +364,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1194455262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128525269318426955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &128525270600248404
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +512,7 @@ GameObject:
   - component: {fileID: 657883388434545742}
   - component: {fileID: 657883388434545741}
   - component: {fileID: 657883388434545743}
+  - component: {fileID: 1344878449}
   m_Layer: 9
   m_Name: Hips_1
   m_TagString: Untagged
@@ -635,6 +662,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1344878449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657883388434545740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &693587261865654459
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +823,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5634944049139579078, guid: 4a83dbe70b5f5493aa961de816d938d9, type: 3}
+  - {fileID: 2100000, guid: 5fe6f37ee239e4c53b2cb3451787df9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1097,6 +1136,7 @@ GameObject:
   - component: {fileID: 1434810483015389856}
   - component: {fileID: 1434810483015389863}
   - component: {fileID: 1434810483015389861}
+  - component: {fileID: 2034587784}
   m_Layer: 9
   m_Name: RightForeArm
   m_TagString: Untagged
@@ -1341,6 +1381,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &2034587784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434810483015389862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1685493515792221593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,6 +1436,7 @@ GameObject:
   - component: {fileID: 1685493517212584065}
   - component: {fileID: 1685493517212584064}
   - component: {fileID: 1685493517212584071}
+  - component: {fileID: 247867736}
   m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
@@ -1531,6 +1584,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &247867736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685493517212584070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1694711970992632310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1639,7 @@ GameObject:
   - component: {fileID: 1694711972395039988}
   - component: {fileID: 1694711972395039978}
   - component: {fileID: 1694711972395039979}
+  - component: {fileID: 1041529292}
   m_Layer: 9
   m_Name: RightUpLeg
   m_TagString: Untagged
@@ -1722,6 +1788,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1041529292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694711972395039977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1874859632689434994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,6 +1888,7 @@ GameObject:
   - component: {fileID: 2446036937985809741}
   - component: {fileID: 2446036937985809742}
   - component: {fileID: 2446036937985809739}
+  - component: {fileID: 1805122853}
   m_Layer: 9
   m_Name: RightArm
   m_TagString: Untagged
@@ -2054,6 +2133,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1805122853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2446036937985809740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2446036939267887187
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,6 +3135,7 @@ GameObject:
   - component: {fileID: 6708814732732289469}
   - component: {fileID: 6708814732732289468}
   - component: {fileID: 6708814732732289459}
+  - component: {fileID: 1456639120}
   m_Layer: 9
   m_Name: LeftLeg
   m_TagString: Untagged
@@ -3192,6 +3284,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1456639120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708814732732289458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6950084791932077107
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,6 +3308,7 @@ GameObject:
   - component: {fileID: 6950084791932077118}
   - component: {fileID: 6950084791932077117}
   - component: {fileID: 6950084791932077116}
+  - component: {fileID: 2063135446}
   m_Layer: 9
   m_Name: LeftForeArm
   m_TagString: Untagged
@@ -3352,6 +3457,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &2063135446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6950084791932077107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6950084793197381932
 GameObject:
   m_ObjectHideFlags: 0
@@ -3479,6 +3596,7 @@ GameObject:
   - component: {fileID: 7673116961414538940}
   - component: {fileID: 7673116961414538930}
   - component: {fileID: 7673116961414538931}
+  - component: {fileID: 1873146734}
   m_Layer: 9
   m_Name: LeftArm
   m_TagString: Untagged
@@ -3627,6 +3745,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1873146734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673116961414538929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7744208291836271451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3670,6 +3800,7 @@ GameObject:
   - component: {fileID: 7744208293104588359}
   - component: {fileID: 7744208293104588357}
   - component: {fileID: 7744208293104588358}
+  - component: {fileID: 1583378640}
   m_Layer: 9
   m_Name: LeftUpLeg
   m_TagString: Untagged
@@ -3818,6 +3949,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1583378640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7744208293104588356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee19fc7b8e0e411086d06d384438f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7826656991635499289
 GameObject:
   m_ObjectHideFlags: 0
@@ -4467,7 +4610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1807376157, guid: 94c90649c1b0a46de97cd4ba31ab0515, type: 3}
       propertyPath: _speed
-      value: 3
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1807376157, guid: 94c90649c1b0a46de97cd4ba31ab0515, type: 3}
       propertyPath: _playerController
@@ -4530,8 +4673,12 @@ PrefabInstance:
       value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 8564414563122041637, guid: 94c90649c1b0a46de97cd4ba31ab0515, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564414563122041637, guid: 94c90649c1b0a46de97cd4ba31ab0515, type: 3}
       propertyPath: m_Constraints
-      value: 116
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8564414563122041637, guid: 94c90649c1b0a46de97cd4ba31ab0515, type: 3}
       propertyPath: m_IsKinematic
