@@ -7,6 +7,7 @@ TagManager:
   - Hit
   - Sword
   - Sea
+  - Floor
   layers:
   - Default
   - TransparentFX

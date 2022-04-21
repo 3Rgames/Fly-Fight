@@ -18,6 +18,7 @@ public class Balancer : MonoBehaviour
         {
             _useBalance = value;
             _balancerJoint.spring = value ? _balanceForce : 0;
+            _balancerRB.isKinematic = value;
         }
     }
 

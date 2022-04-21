@@ -48,12 +48,30 @@ public class SwordController : MonoBehaviour
             _forceDirection = new Vector3(joy.Horizontal, _swordRB.velocity.y, joy.Vertical);
             _swordRB.AddForce(_forceDirection * 100f * _speed * Time.deltaTime, ForceMode.Force);
 
+            Ray();
             BodyFly();
 
-            _swordRB.MoveRotation(Quaternion.Lerp(
+            /*_swordRB.MoveRotation(Quaternion.Lerp(
                 transform.rotation, Quaternion.Euler(x, Quaternion.LookRotation(_swordRB.velocity).eulerAngles.y, z),
-                Time.deltaTime / _rotationSpeed));
+                Time.deltaTime / _rotationSpeed));*/
         }
+    }
+
+    private void Ray()
+    {
+        RaycastHit hit;
+        Ray landingRay = new Ray(transform.position, Vector3.down);
+        if(Physics.Raycast(landingRay, out hit))
+        {
+            if(hit.collider.tag == Tags.FLOOR)
+            {
+                if (Vector3.Distance(transform.position, hit.point) <= 1f)
+                {
+                    _swordRB.AddForce(Vector3.up * 100f * Time.deltaTime, ForceMode.Force);
+                }
+            }
+        }
+
     }
 
     private void BodyFly()
