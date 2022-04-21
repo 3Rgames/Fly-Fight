@@ -14,7 +14,7 @@ public class CopyLimb : MonoBehaviour
     private List<Quaternion> _targetInitialRotations = new List<Quaternion>();
 
     private void Start()
-    {      
+    {
         foreach (Transform physical in _physicalBody.GetComponentsInChildren<Transform>())
         {
             if(physical.TryGetComponent(out ConfigurableJoint joint))
@@ -31,12 +31,27 @@ public class CopyLimb : MonoBehaviour
                 }
             }
         }
+        ActiveRagdoll(false);
     }
 
     public void DeleteJoints()
     {
         for (int i = 0; i < _configurableJoints.Count; i++)
             Destroy(_configurableJoints[i]);
+    }
+
+    public void ActiveRagdoll(bool _)
+    {
+        /*if (_)
+        {
+            for (int i = 0; i < _configurableJoints.Count; i++)
+                _configurableJoints[i].angularXDrive = _configurableJoints[i].angularYZDrive = new JointDriveConfig { positionSpring = 0, positionDamper = 0, maximumForce = 0 };
+        }
+        else
+        {
+            for (int i = 0; i < _configurableJoints.Count; i++)
+                _configurableJoints[i].angularXDrive = _configurableJoints[i].angularYZDrive = new JointDriveConfig { positionSpring = 30, positionDamper = 0, maximumForce = 3 };
+        }*/
     }
 
     private void FixedUpdate()

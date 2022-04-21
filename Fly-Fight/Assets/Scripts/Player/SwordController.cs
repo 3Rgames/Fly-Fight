@@ -7,6 +7,7 @@ public class SwordController : MonoBehaviour
     [SerializeField] private DynamicJoystick joy;
     [SerializeField] private Rigidbody _swordRB;
     [SerializeField] private float _speed = 1f;
+    [SerializeField] private float _rotationSpeed = 1f;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private List<Rigidbody> _bodyParts = new List<Rigidbody>();
     private Vector3 _forceDirection;
@@ -39,28 +40,27 @@ public class SwordController : MonoBehaviour
     private void FixedUpdate()
     {
         transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, 1f, 1.8f), transform.localPosition.z);
-        _swordRB.velocity = Clamp(_swordRB.velocity, _minVelocity, _maxVelocity);
         _swordRB.angularVelocity = Clamp(_swordRB.angularVelocity, _minVelocity, _maxVelocity);
 
         if (joy.Horizontal != 0 || joy.Vertical != 0)
         {
+            _swordRB.velocity = Vector3.zero;
             _forceDirection = new Vector3(joy.Horizontal, _swordRB.velocity.y, joy.Vertical);
-            _swordRB.AddForce(_forceDirection * _speed * Time.deltaTime, ForceMode.Force);
+            _swordRB.AddForce(_forceDirection * 100f * _speed * Time.deltaTime, ForceMode.Force);
 
             BodyFly();
 
-            transform.rotation = Quaternion.Lerp(
+            _swordRB.MoveRotation(Quaternion.Lerp(
                 transform.rotation, Quaternion.Euler(x, Quaternion.LookRotation(_swordRB.velocity).eulerAngles.y, z),
-                Time.deltaTime);
+                Time.deltaTime / _rotationSpeed));
         }
-
-        //_swordRB.velocity = new Vector3(joy.Horizontal * _speed, _swordRB.velocity.y, joy.Vertical * _speed);
     }
 
     private void BodyFly()
     {
         for(int i=0;i< _bodyParts.Count;i++)
         {
+            _bodyParts[i].velocity = Vector3.zero;
             _bodyParts[i].AddForce(Vector3.up * Vector3.Distance(transform.position, _bodyParts[i].position), ForceMode.Force);
         }
     }
