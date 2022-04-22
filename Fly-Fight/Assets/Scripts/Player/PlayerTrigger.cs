@@ -24,7 +24,7 @@ public class PlayerTrigger : MonoBehaviour
         }
         if(other.tag == Tags.SEA)
         {
-            TakeDamage(100f);
+            LevelController.Instance.LevelReload();
         }
     }
 
