@@ -75,6 +75,7 @@ public class EnemyController : MonoBehaviour
         _copyLimb.IsPlayerActive = true;
         _enemyTrigger.HealthBarInActive();
         _copyLimb.DeleteJoints();
+        _death.transform.SetParent(null);
         _death.Play();
         UIController.Instance.Killed++;
         UIController.Instance.CheckWin();
