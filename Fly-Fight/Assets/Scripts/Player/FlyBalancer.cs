@@ -19,4 +19,15 @@ public class FlyBalancer : MonoBehaviour
                 ForceMode.Acceleration);
         });
     }
+
+    public void StopVelocity()
+    {
+        _bodyParts.ForEach(rigidbody =>
+        {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+
+            rigidbody.AddForce(Vector3.down * 300f, ForceMode.Acceleration);
+        });
+    }
 }

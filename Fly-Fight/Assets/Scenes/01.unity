@@ -943,7 +943,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 41.99844
+  field of view: 41.99098
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3827,7 +3827,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 2104173264}
   m_Follow: {fileID: 2104173264}
   m_Lens:
-    FieldOfView: 41.99844
+    FieldOfView: 41.99098
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -3848,8 +3848,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589977390}
-  m_LocalRotation: {x: 0.17417157, y: 0.000000021034976, z: -0.0000000037205627, w: 0.98471534}
-  m_LocalPosition: {x: 2.18, y: 7.337062, z: -18.065504}
+  m_LocalRotation: {x: 0.17417157, y: -0.000000021034978, z: 0.000000003720563, w: 0.98471534}
+  m_LocalPosition: {x: 2.18, y: 7.297062, z: -18.065504}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 906547084}
@@ -4450,7 +4450,7 @@ Transform:
   m_GameObject: {fileID: 2025300114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_LocalScale: {x: 150, y: 1, z: 150}
   m_Children: []
   m_Father: {fileID: 164051005}
   m_RootOrder: 25
@@ -4759,6 +4759,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1137209232, guid: 7b3c24ba1cda347daab0cd6eaee8c121, type: 3}
+      propertyPath: _balanceForce
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137209232, guid: 7b3c24ba1cda347daab0cd6eaee8c121, type: 3}
+      propertyPath: _balancerOffcet
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137209233, guid: 7b3c24ba1cda347daab0cd6eaee8c121, type: 3}
+      propertyPath: m_Damper
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137209233, guid: 7b3c24ba1cda347daab0cd6eaee8c121, type: 3}
+      propertyPath: m_Spring
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4911941100174424456, guid: 7b3c24ba1cda347daab0cd6eaee8c121, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4773,7 +4789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4911941100174424457, guid: 7b3c24ba1cda347daab0cd6eaee8c121, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4911941100174424457, guid: 7b3c24ba1cda347daab0cd6eaee8c121, type: 3}
       propertyPath: m_LocalPosition.z

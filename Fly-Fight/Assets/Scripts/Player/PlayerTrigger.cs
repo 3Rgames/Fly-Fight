@@ -13,7 +13,7 @@ public class PlayerTrigger : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.localPosition = new Vector3(_target.localPosition.x - 0.8f, 1f, _target.localPosition.z + 0.03f);
+        transform.localPosition = _target.localPosition;
     }
 
     private void OnTriggerEnter(Collider other)

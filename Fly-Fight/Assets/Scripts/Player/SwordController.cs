@@ -49,7 +49,7 @@ public class SwordController : MonoBehaviour
             _forceDirection = new Vector3(joy.Horizontal, 0.0f, joy.Vertical);
 
             if (TryGetGroundPosition(out var groundPosition))
-                _swordRB.AddForce(Vector3.up *30f* (groundPosition + _groundOffcet - transform.position.y) * _speed * Time.deltaTime,
+                _swordRB.AddForce(Vector3.up *40f* (groundPosition + _groundOffcet - transform.position.y) * _speed * Time.deltaTime,
                     ForceMode.Force);
 
             _swordRB.AddForce(_forceDirection * 100f * _speed * Time.deltaTime, ForceMode.Force);
@@ -84,6 +84,7 @@ public class SwordController : MonoBehaviour
     {
         _swordRB.velocity = Vector3.zero;
         _swordRB.angularVelocity = Vector3.zero;
+        _flyBalancer.StopVelocity();
         _playerController.NonActive();
     }
 
