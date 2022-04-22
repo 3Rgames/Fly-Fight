@@ -5,13 +5,19 @@ using UnityEngine;
 public class SwordController : MonoBehaviour
 {
     [SerializeField] private DynamicJoystick joy;
+    [SerializeField] private PlayerController _playerController;
+    [Header("Move Params")]
+    [Space]
     [SerializeField] private Rigidbody _swordRB;
     [SerializeField] private float _speed = 1f;
-    [SerializeField] private float _rotationSpeed = 1f;
-    [SerializeField] private PlayerController _playerController;
-    [SerializeField] private List<Rigidbody> _bodyParts = new List<Rigidbody>();
+    [SerializeField] private float _rotationSpeed = 10f;
+    [Space]
+    [Header("Balance")]
+    [Space]
+    [SerializeField] private FlyBalancer _flyBalancer;
+    [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private float _groundOffcet = 1f;
     private Vector3 _forceDirection;
-    private Vector3 _maxVelocity, _minVelocity;
 
     private float x = -90f, z = -180f;
 
@@ -23,14 +29,12 @@ public class SwordController : MonoBehaviour
 
     private void Start()
     {
-        _maxVelocity = Vector3.one * 3f;
-        _minVelocity = Vector3.one * -3f;
         IEnumerator NumbCor()
         {
             while (true)
             {
-                x = Random.Range(-70f, -110f);
-                z = Random.Range(-170f, -200f);
+                x = Random.Range(-80f,-100f);
+                z = Random.Range(-170f, -190f);
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -39,56 +43,35 @@ public class SwordController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, 1f, 1.8f), transform.localPosition.z);
-        _swordRB.angularVelocity = Clamp(_swordRB.angularVelocity, _minVelocity, _maxVelocity);
-
         if (joy.Horizontal != 0 || joy.Vertical != 0)
         {
             _swordRB.velocity = Vector3.zero;
-            _forceDirection = new Vector3(joy.Horizontal, _swordRB.velocity.y, joy.Vertical);
+            _forceDirection = new Vector3(joy.Horizontal, 0.0f, joy.Vertical);
+
+            if (TryGetGroundPosition(out var groundPosition))
+                _swordRB.AddForce(Vector3.up *30f* (groundPosition + _groundOffcet - transform.position.y) * _speed * Time.deltaTime,
+                    ForceMode.Force);
+
             _swordRB.AddForce(_forceDirection * 100f * _speed * Time.deltaTime, ForceMode.Force);
+            _flyBalancer.Balance(_forceDirection, _swordRB.position);
 
-            Ray();
-            BodyFly();
-
-            /*_swordRB.MoveRotation(Quaternion.Lerp(
+            _swordRB.MoveRotation(Quaternion.Lerp(
                 transform.rotation, Quaternion.Euler(x, Quaternion.LookRotation(_swordRB.velocity).eulerAngles.y, z),
-                Time.deltaTime / _rotationSpeed));*/
+                Time.deltaTime / _rotationSpeed));
         }
     }
 
-    private void Ray()
+    private bool TryGetGroundPosition(out float groundPositon)
     {
-        RaycastHit hit;
+        
         Ray landingRay = new Ray(transform.position, Vector3.down);
-        if(Physics.Raycast(landingRay, out hit))
+        if (Physics.Raycast(landingRay, out var hit, _groundLayer))
         {
-            if(hit.collider.tag == Tags.FLOOR)
-            {
-                if (Vector3.Distance(transform.position, hit.point) <= 1f)
-                {
-                    _swordRB.AddForce(Vector3.up * 100f * Time.deltaTime, ForceMode.Force);
-                }
-            }
+            groundPositon = hit.point.y;
+            return true;
         }
-
-    }
-
-    private void BodyFly()
-    {
-        for(int i=0;i< _bodyParts.Count;i++)
-        {
-            _bodyParts[i].velocity = Vector3.zero;
-            _bodyParts[i].AddForce(Vector3.up * Vector3.Distance(transform.position, _bodyParts[i].position), ForceMode.Force);
-        }
-    }
-
-    private Vector3 Clamp(Vector3 value, Vector3 Min, Vector3 Max)
-    {
-        value.x = Mathf.Clamp(value.x, Min.x, Max.x);
-        value.y = Mathf.Clamp(value.y, Min.y, Max.y);
-        value.z = Mathf.Clamp(value.z, Min.z, Max.z);
-        return value;
+        groundPositon = 0;
+        return false;
     }
 
     private void Active()

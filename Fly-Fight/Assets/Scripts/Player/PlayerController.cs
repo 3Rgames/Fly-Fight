@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Components")]
+    [Space]
     [SerializeField] private PlayerTrigger _playerTrigger;
     [SerializeField] private CopyLimb _copyLimb;
     [SerializeField] private ParticleSystem _death;
-    [SerializeField] private Balancer _balancer;
     [SerializeField] private Animator _playerAnimator;
+    [Space]
+    [Header("Particle")]
+    [Space]
+    [SerializeField] private Balancer _balancer;
 
     private StateMachine _SM;
     private NoneState _noneState;
@@ -28,19 +33,17 @@ public class PlayerController : MonoBehaviour
         _playerTrigger.OnDeath += Death;
     }
 
-    public void Active()//sword
+    public void Active()
     {
         _balancer.UseBalance = false;
         _copyLimb.IsPlayerActive = true;
-        _copyLimb.ActiveRagdoll(true);
         _SM.ChangeState(_noneState);
     }
 
-    public void NonActive()//animator
+    public void NonActive()
     {
         _balancer.UseBalance = true;
         _SM.ChangeState(_standUpState);
-        _copyLimb.ActiveRagdoll(false);
         _copyLimb.IsPlayerActive = false;
     }
 

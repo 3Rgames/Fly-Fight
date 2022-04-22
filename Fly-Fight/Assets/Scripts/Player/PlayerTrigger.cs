@@ -20,12 +20,21 @@ public class PlayerTrigger : MonoBehaviour
     {
         if (other.tag == Tags.HIT)
         {
-            TapTicController.Instance.Medium();
-            _health -= 10f;
-            _healthBar.HealthBarUpdate(_health);
-            if (_health <= 0)
-                OnDeath?.Invoke();
+            TakeDamage(10f);
         }
+        if(other.tag == Tags.SEA)
+        {
+            TakeDamage(100f);
+        }
+    }
+
+    private void TakeDamage(float damage)
+    {
+        TapTicController.Instance.Medium();
+        _health -= damage;
+        _healthBar.HealthBarUpdate(_health);
+        if (_health <= 0)
+            OnDeath?.Invoke();
     }
 
     public void HealthBarInActive()

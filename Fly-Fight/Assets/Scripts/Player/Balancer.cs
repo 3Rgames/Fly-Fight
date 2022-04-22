@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Balancer : MonoBehaviour
 {
+    [Header("Components")]
+    [Space]
     [SerializeField] private Rigidbody _balancerRB;
     [SerializeField] private Rigidbody _hipsRB;
-    [SerializeField] private Vector3 _balancerOffcet;
     [SerializeField] private SpringJoint _balancerJoint;
+    [Space]
+    [Header("Balance Params")]
+    [Space]
+    [SerializeField] private float _balancerOffcet;
     [SerializeField] private float _balanceForce;
     private bool _useBalance;
 
@@ -24,6 +29,6 @@ public class Balancer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _balancerRB.MovePosition(_hipsRB.position + transform.TransformVector(_balancerOffcet));
+        _balancerRB.MovePosition(_hipsRB.position + Vector3.up * _balancerOffcet);
     }
 }
